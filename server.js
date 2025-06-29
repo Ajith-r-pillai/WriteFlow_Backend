@@ -3,7 +3,7 @@ import { Server } from 'socket.io';
 import app from './app.js';
 import { connectDB } from './config/db.js';
 import { setupSocket } from './sockets/sockets.js';
-import dotenv from 'dotenv';
+
 
 
 
