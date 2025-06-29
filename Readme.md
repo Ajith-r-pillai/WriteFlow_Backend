@@ -34,6 +34,7 @@ Create a .env file:
 PORT=5000
 MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/notes
 JWT_SECRET=your-secret-key
+LOCAL_FRONTEND_URL=http://localhost:5173
 
 3. Run development server
 
