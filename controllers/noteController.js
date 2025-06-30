@@ -10,8 +10,8 @@ export const getNotes = async (req, res) => {
       $or: [{ owner: req.user._id }, { collaborators: req.user._id }],
     })
       .sort('-updatedAt')
-      .populate('owner', 'name email')               // populate owner's name & email
-      .populate('collaborators', 'name email');      // populate collaborators' name & email
+      .populate('owner', 'name email')              
+      .populate('collaborators', 'name email');      
 
     res.json(notes);
   } catch (err) {
@@ -55,7 +55,7 @@ export const createNote = async (req, res) => {
       owner: req.user._id,
     });
 
-    await note.save(); // 👈 using .save()
+    await note.save(); 
 
     res.status(201).json(note);
   } catch (err) {
@@ -130,7 +130,7 @@ export const addCollaborator = async (req, res) => {
       await note.save();
     }
 
-    // Return updated collaborators
+   
     const populatedNote = await Note.findById(id).populate('collaborators', 'id name email');
     res.status(200).json(populatedNote.collaborators);
   } catch (err) {

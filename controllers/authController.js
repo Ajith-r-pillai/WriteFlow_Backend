@@ -20,7 +20,7 @@ export const register = async (req, res) => {
       password: hashedPassword,
     });
 
-    await user.save(); // 👈 save instead of create
+    await user.save();
 
     res.status(201).json({
       token: generateToken(user._id),
@@ -40,19 +40,19 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check if email exists
+   
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: 'Email not found' });
     }
 
-    // Check if password is correct
+  
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid password' });
     }
 
-    // Successful login
+   
     res.status(200).json({
       token: generateToken(user._id),
       user: {
@@ -76,13 +76,11 @@ export const searchUsers = async (req, res) => {
   }).select('name email');
   res.json(users);
 };
-// controllers/authController.js
+
 export const checkAuth = async (req, res) => {
- 
-  
-  try {
+ try {
     if (!req.user) return res.status(401).json({ message: 'Not authenticated' });
-    res.status(200).json(req.user); // sends user info back
+    res.status(200).json(req.user); 
   } catch (err) {
     res.status(500).json({ message: 'Failed to check auth' });
   }

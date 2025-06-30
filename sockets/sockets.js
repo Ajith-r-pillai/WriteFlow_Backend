@@ -1,6 +1,6 @@
 export const setupSocket = (io) => {
   io.on('connection', (socket) => {
-    console.log('✅ User connected:', socket.id);
+    console.log(' User connected:', socket.id);
 
     // Join a note room
     socket.on('joinNote', (noteId) => {
